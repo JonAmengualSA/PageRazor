@@ -1,0 +1,58 @@
+﻿@page
+@model WebInter.Pages.PnaderiaModel
+@{
+    ViewData["Title"] = "Pnaderia";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Panaderia</title>
+</head>
+
+<body>
+
+    <h1>Response data</h1>
+    <div class="row featurette">
+        <table class="table col-lg-4 offset-lg-4 col-md-6 offset-md-3
+          col-12 ">
+            <thead class="thead" style="background-color:#DFAB6F;color:white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tipo de Pan</th>
+                    <th scope="col">UnitUrice</th>
+                    <th scope="col">Foto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pan in Model.panaderias)
+                {
+
+                    <tr>
+                        <td>@pan.ID</td>
+                        <td>@pan.TipoPan</td>
+                        <td>@pan.UnitPrice €</td>
+                        <td><image src="@pan.Foto" /></td>
+                    </tr>
+                }
+             </tbody>
+</table>
+    </div>
+            <br />
+            <form method="post">
+                TipoPan:<input type="text" asp-for="TipoPan" />
+                Precio:<input type="number" asp-for="UnitPrice " />
+                Foto:<input type="url" asp-for="Foto" />
+                <button type="Submit">Insertar Datos</button>
+
+            </form>
+    <br />
+            <form asp-page-handler="delete" method="post">
+                ID:<input type="number" asp-for="ID"/>
+            </form>
+    <br />
+</body>
+</html>
+
