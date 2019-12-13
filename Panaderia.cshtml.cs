@@ -29,7 +29,7 @@ namespace WebInter.Pages
             panaderias = JsonConvert.DeserializeObject<List<Panaderia>>(response.Content);
             
         }
-        public void OnPost(int ID, string TipoPan,Double UnitPrice,string Foto)
+        public void OnPostInsert(int ID,string TipoPan,Double UnitPrice,string Foto)
         {
 
             var pan = new RestClient("https://localhost:44385/api/Panaderias");
@@ -50,6 +50,7 @@ namespace WebInter.Pages
 
         public void OnPostDelete(int ID)
         {
+            
             var pan = new RestClient("https://localhost:44385/api/Panaderias");
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
@@ -58,6 +59,24 @@ namespace WebInter.Pages
             // agregamos parameters de formulario
             request.AddParameter("ID", ID);
             IRestResponse response = pan.Delete(request);
+
+            OnGet();
+        }
+
+        public void OnPostEdit(int ID,string TipoPan, Double UnitPrice, string Foto)
+        {
+
+            var pan = new RestClient("https://localhost:44385/api/Panaderias");
+            var request = new RestRequest(Method.PUT);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/x-www-form-urlencoded"); // imprescindible para enlazar formulario valores con objeto de web api
+
+            // agregamos parameters de formulario
+            request.AddParameter("ID", ID);
+            request.AddParameter("TipoPan", TipoPan);
+            request.AddParameter("UnitPrice", UnitPrice);
+            request.AddParameter("Foto", Foto);
+            IRestResponse response = pan.Put(request);
 
             OnGet();
         }
