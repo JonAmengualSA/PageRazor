@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model WebInter.Pages.PnaderiaModel
 @{
     ViewData["Title"] = "Pnaderia";
@@ -37,21 +37,36 @@
                         <td><image src="@pan.Foto" /></td>
                     </tr>
                 }
-             </tbody>
-</table>
+            </tbody>
+        </table>
     </div>
-            <br />
-            <form method="post">
-                TipoPan:<input type="text" asp-for="TipoPan" />
-                Precio:<input type="number" asp-for="UnitPrice " />
-                Foto:<input type="url" asp-for="Foto" />
-                <button type="Submit">Insertar Datos</button>
-
-            </form>
     <br />
-            <form asp-page-handler="delete" method="post">
-                ID:<input type="number" asp-for="ID"/>
-            </form>
+    <h1>Insertar</h1>
+    <form asp-page-handler="insert" method="post">
+        ID:<input type="number" asp-for="ID " />
+        TipoPan:<input type="text" asp-for="TipoPan" />
+        Precio:<input type="number" asp-for="UnitPrice " />
+        Foto:<input type="url" asp-for="Foto" />
+        <button type="Submit">Insertar Datos</button>
+
+    </form>
+    <hr />
+    <h1>Borrar</h1>
+    <form asp-page-handler="delete" method="post">
+        ID:<input type="number" asp-for="ID" />
+        <button type="Submit">Borarr</button>
+    </form>
+    <br />
+
+    <hr />
+    <h1>Update</h1>
+    <form asp-page-handler="edit" method="post">
+        ID:<input type="number" asp-for="ID " />
+        TipoPan:<input type="text" asp-for="TipoPan" />
+        Precio:<input type="number" asp-for="UnitPrice " />
+        Foto:<input type="url" asp-for="Foto" />
+        <button type="Submit">Actualizar Datos</button>
+    </form>
     <br />
 </body>
 </html>
